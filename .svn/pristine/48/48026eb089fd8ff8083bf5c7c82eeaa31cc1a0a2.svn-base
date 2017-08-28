@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>UTrack!</title>
+    <link rel="stylesheet" href="css/ext/bootstrap.css"/>
+    <link rel="stylesheet" href="css/utrack.css"/>
+</head>
+<body>
+
+    <div id="app-container" class="container">
+
+        <header>
+            <h1>UTrack! <small>Track and analyze data that matters to you!</small></h1>
+        </header>
+        <div id="nav_div">
+            <!-- For the usages of row and col classes, refer to Bootstrap API -->
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <ul class="nav nav-tabs nav-justified">
+                        <li id="nav-input-tab" class="active"><a href="#input">Input</a></li>                
+                        <li id="nav-analysis-tab"><a href="#analysis">Analysis</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="input-div">
+            <br><br>
+            <p>
+            <div class="label">
+                activity:
+            </div>
+            <div class="inputs">               
+                    <select style="width:300px;border: 2px solid black" id="l1">
+                                            <option value="writing code">writing code</option>
+                                            <option value="eating dinner">eating dinner</option>
+                                            <option value="playing sports">playing sports</option>
+                                            <option value="studying for exams">studying for exams</option>
+                                            <option value="attending lectures">attending lectures</option>
+                                            <option value="watching tv">watching tv</option>
+                    </select>
+            </div>
+            </p>
+            <p>
+            <div class="label">
+                energy level:
+            </div>
+            <div class="inputs">
+                <input type="number" name="energy level" min="1" max="5" step="1" class="i1" id="l2"> 
+                (1=exhausted, 5=very awake)
+            </div>
+            </p>
+            <p>
+            <div class="label">
+                stress level:
+            </div>
+            <div class="inputs">
+                <input type="number" name="stress level" min="1" max="5" step="1" class="i1" id="l3">
+                (1=very stressed, 5=very relaxed)
+            </div>
+            </p>
+            <p>
+            <div class="label">
+                happiness level:
+            </div>
+            <div class="inputs">
+                <input type="number" name="happiness level" min="1" max="5" step="1" class="i1" id="l4">
+                (1=depressed, 5=very happy)
+            </div>
+            </p> 
+            <p>
+            <div class="label">
+                time spent:
+            </div>
+            <div class="inputs">
+                <input type="number" name="time spent" min="1" step="1" class="i2" id="l5">
+                minutes
+            </div>
+            </p>
+            <br>
+            <p style="text-align:center">
+                <span id="last">No last entried data available</span><button id="submit">Submit</button>
+            </p>
+        </div>
+
+        <div id="analysis-div" class="hidden">
+            <div id="choose">
+                <div id="rads">
+                    <div id="view">
+                        views:
+                    </div>
+                    
+                    <div id="chooses1">
+                        <input type="radio" name="typeofview" value="table summary" id="rds1"> table summary<br>
+                        <input type="radio" name="typeofview" value="scatterplot" id="rds2"> scatterplot<br>
+                    </div>
+                </div>
+                <div id="checks">
+                    <div id="customize">
+                        Customize:
+                    </div>
+                    <div id="chooses2">
+                        <input type="checkbox" name="level" value="energy level" id="mycheck1">  energy level &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspo<br>
+                        <input type="checkbox" name="level" value="stress level" id="mycheck2">  stress level&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspx<br>
+                        <input type="checkbox" name="level" value="happiness level" id="mycheck3">  happiness level &nbsp+<br>
+                        <br>
+                        <button id="plot">Plot</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="graph">
+
+            </div>
+        </div>
+
+        <footer>
+            <div id="unit-tests">
+                <!-- Keep this here so TAs can run your unit tests -->
+                <a href="unit_tests.html">Run Unit Tests</a>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="js/ext/underscore.js"></script>
+    <script src="js/model.js"></script>
+    <script src="js/view.js"></script>
+    <script src="js/utrack.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+#input-div {
+	width: 900px;
+	margin: auto;
+}
+
+.inputs , .label {
+	display: inline-block;
+	font-family: serif;
+	font-size: 20px;
+}
+
+.label {
+	color:black;
+	font-weight: bold;
+	width:400px;
+	text-align: right;
+}
+
+.inputs {
+	text-align: left;
+	width: 450px;
+}
+
+.i1 {
+	width: 15%;
+}
+
+.i2 {
+	width: 25%;
+}
+
+#analysis-div {
+	margin-top: 20px;
+	width: 800px;
+	//border: 1px solid black;
+	height: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#analysis-div * {
+	overflow: hidden;
+}
+
+#choose {
+	width: 300px;
+	//border: 1px solid black;
+	height: 600px;
+}
+
+#graph {
+	width: 480px;
+	//border: 1px solid black;
+	height: 600px;
+}
+
+#choose , #graph {
+	display: inline-block;
+	margin: 0px;
+}
+
+#rads {
+	width: 300px;
+	//border: 1px solid black;
+	height: 100px
+}
+
+#checks {
+	width:300px;
+	//border: 1px solid black;
+	height: 300px;
+	margin-top: 50px;
+}
+
+#view{
+	margin-right: 2px;
+	text-align: right;
+	font-weight: bold;
+	font-family: serif;
+	font-size: 20px;
+	width: 100px;
+	//border: 1px solid black;
+	height: 100px;
+	display: inline-block;
+}
+
+#chooses1 {
+	margin-left: 5px;
+	width:180px;
+	//border: 1px solid black;
+	height: 100px;
+	font-size: 18px;
+	display: inline-block;
+}
+
+#customize {
+	margin-right: 0px;
+	text-align: right;
+	font-weight: bold;
+	font-family: serif;
+	font-size: 20px;
+	width: 100px;
+	//border: 1px solid black;
+	height: 250px;
+	display: inline-block;
+}
+
+#chooses2 {
+	margin-left: 0px;
+	width:180px;
+	//border: 1px solid black;
+	height: 250px;
+	font-size: 18px;
+	display: inline-block;
+}
+
+#plot {
+	float: right;
+}
+
+#errormsg {
+	text-align: center;
+}

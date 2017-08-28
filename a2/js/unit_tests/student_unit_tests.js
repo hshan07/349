@@ -1,0 +1,108 @@
+'use strict';
+
+var expect = chai.expect;
+
+describe('Student Unit Tests', function() {
+	describe('ImageCollectionModel',function() {
+		var modelModule;
+		modelModule = createModelModule();
+		var icm;
+		icm = new modelModule.ImageCollectionModel();
+
+		it('should add and then remove a listener correctly.', function() {
+		var listener_fn = sinon.spy();
+        var addListenerSpy = sinon.spy(icm, "addListener");
+        var removeListenerSpy = sinon.spy(icm, "removeListener");
+
+        icm.addListener(listener_fn);
+
+        expect(addListenerSpy.calledWith(listener_fn), 'addListener should have been called with listener_fn.').to.be.true;
+        expect(addListenerSpy.calledOnce, 'addListener should have been called once.').to.be.true;
+        expect(icm.listeners.length, 'listeners.length should be one.').to.be.equal(1);
+
+        icm.removeListener(listener_fn);
+
+        expect(removeListenerSpy.calledWith(listener_fn), 'removeListener should have been called with listener_fn.').to.be.true;
+        expect(removeListenerSpy.calledOnce, 'removeListener should have been called once.').to.be.true;
+        expect(icm.listeners.length, 'listeners.length should be zero.').to.be.equal(0);
+
+        icm.removeListener(listener_fn);
+        expect(icm.listeners.length, 'listeners.length should still be zero.').to.be.equal(0);
+		})
+
+		it('should add then remove an imagemodel correctly.', function(){
+			var data = new modelModule.ImageModel('images/GOPR0042-small.jpg',new Date(),'',0);
+			var adddata = sinon.spy(icm, "addImageModel");
+        	var removedata = sinon.spy(icm, "removeImageModel");
+        	icm.addImageModel(data);
+        	expect(adddata.calledWith(data),'addActivityDataPointSpy should have been called with data.').to.be.true;
+    		expect(adddata.calledOnce,'addActivityDataPointSpy should have been called once').to.be.true;
+    		expect(icm.imageModels.length,'datapoints.length should be 1').to.be.equal(1);
+
+        	icm.removeImageModel(data);
+        	expect(removedata.calledWith(data),'removeActivityDataPointSpy should have been called with data.').to.be.true;
+    		expect(removedata.calledOnce,'removeActivityDataPointSpy should have been called once').to.be.true;
+    		expect(icm.imageModels.length,'datapoints.length should be 0').to.be.equal(0);
+		})
+	})
+	
+	describe("ViewModule", function(){
+    var ViewModule = createViewModule();
+		describe("Toolbar",function(){
+		var tb = new ViewModule.Toolbar();
+		it('should add and then remove a listener correctly.', function() {
+		var listener_fn = sinon.spy();
+        var addListenerSpy = sinon.spy(tb, "addListener");
+        var removeListenerSpy = sinon.spy(tb, "removeListener");
+
+        tb.addListener(listener_fn);
+
+        expect(addListenerSpy.calledWith(listener_fn), 'addListener should have been called with listener_fn.').to.be.true;
+        expect(addListenerSpy.calledOnce, 'addListener should have been called once.').to.be.true;
+        expect(tb.listeners.length, 'listeners.length should be one.').to.be.equal(1);
+
+        tb.removeListener(listener_fn);
+
+        expect(removeListenerSpy.calledWith(listener_fn), 'removeListener should have been called with listener_fn.').to.be.true;
+        expect(removeListenerSpy.calledOnce, 'removeListener should have been called once.').to.be.true;
+        expect(tb.listeners.length, 'listeners.length should be zero.').to.be.equal(0);
+
+        tb.removeListener(listener_fn);
+        expect(tb.listeners.length, 'listeners.length should still be zero.').to.be.equal(0);
+		})
+
+		it('should notify every listener when the current view changed.', function() {
+			var listener_fn_1 = sinon.spy();
+      		var listener_fn_2 = sinon.spy();
+      		tb.addListener(listener_fn_1);
+      		tb.addListener(listener_fn_2);
+      		var view;
+      		if(tb.getCurrentView() === 'GRID_VIEW') {
+      			view = "LIST_VIEW";
+      		} else {
+      			view = "GRID_VIEW";
+      		}
+      		tb.setToView(view);
+      		expect(listener_fn_1.calledWith,view);
+      		expect(listener_fn_2.calledWith,view);
+		})
+
+		it('should notify every listener when the current rating filter changed.', function(){
+			var listener_fn_3 = sinon.spy();
+      		var listener_fn_4 = sinon.spy();
+      		tb.addListener(listener_fn_3);
+      		tb.addListener(listener_fn_4);
+      		var r;
+      		if(tb.getCurrentRatingFilter() == 0) {
+      			r=1;
+      		} else {
+      			r=tb.getCurrentRatingFilter()-1;
+      		}
+      		tb.setRatingFilter(r);
+      		var e = 'RATING_CHANGE';
+      		expect(listener_fn_3.calledWith,e);
+      		expect(listener_fn_4.calledWith,e);
+		})
+		})
+	})
+});
